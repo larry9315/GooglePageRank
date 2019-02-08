@@ -108,7 +108,9 @@ bool operator==(const Matrix& lhs, const Matrix& rhs) {
         return false;
     }
 
-    // absolute value of the two minus value to handle tolerance calculatrion
+    double EPSILON = 0.0001;
+
+    // absolute value of the two minus value to handle tolerance calculation
     for (int i = 0; i < lhs.row * lhs.column; i++) {
         if (fabs(lhs.myArr[i] - rhs.myArr[i]) >= EPSILON) {
             return false;

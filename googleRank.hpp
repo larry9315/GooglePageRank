@@ -12,7 +12,9 @@
 #include <fstream>
 
 class GoogleRank {
-
+    Matrix s_matrix;
+    Matrix m_matrix;
+    Matrix rank_matrix;
 
     vector<double> myVec;
     int dimension;
@@ -21,11 +23,11 @@ public:
 
     void read(string fileName);
 
-    Matrix get_s_matrix();
+    void build_s_matrix();
 
-    Matrix get_m_matrix(const Matrix& s_matrix);
+    void build_m_matrix();
 
-    Matrix get_rank_matrix(const Matrix& m_matrix);
+    void build_rank_matrix();
 
-    void printResult(Matrix& rank_matrix);
+    void printResult();
 };

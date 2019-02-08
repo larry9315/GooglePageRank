@@ -9,9 +9,9 @@ GoogleRank::GoogleRank() {
     read("connectivity.txt");
     // getting n dimension of square matrix
 
-//    build_s_matrix();
-//    build_m_matrix();
-//    build_rank_matrix();
+    build_s_matrix();
+    build_m_matrix();
+    build_rank_matrix();
 
 
 }
@@ -34,10 +34,10 @@ void GoogleRank::read(string fileName) {
     }
 }
 
-Matrix GoogleRank::get_s_matrix() {
+void GoogleRank::build_s_matrix() {
     // create first stage of s matrix
 
-    Matrix s_matrix(dimension);
+    s_matrix = Matrix(dimension);
 
     int k = 0;
     for (int i = 0; i < dimension; i++) {
@@ -68,13 +68,14 @@ Matrix GoogleRank::get_s_matrix() {
             }
         }
     }
-    return s_matrix;
 }
 
-Matrix GoogleRank::get_m_matrix(const Matrix& s_matrix) {
+void GoogleRank::build_m_matrix() {
     Matrix matrix1(dimension);
     Matrix matrix2(dimension);
     Matrix q_matrix(dimension);
+
+    double P_VALUE = 0.85;
 
     // making identity matrix for p_value, 1-p_value and Q matrix
     for (int i = 0; i < dimension; i++) {
@@ -88,12 +89,11 @@ Matrix GoogleRank::get_m_matrix(const Matrix& s_matrix) {
     }
 
     // formula input
-    Matrix m_matrix = (matrix1 * s_matrix) + (matrix2 * q_matrix);
-    return m_matrix;
+    m_matrix = (matrix1 * s_matrix) + (matrix2 * q_matrix);
 }
 
-Matrix GoogleRank::get_rank_matrix(const Matrix& m_matrix) {
-    Matrix rank_matrix = Matrix(dimension, 1);
+void GoogleRank::build_rank_matrix() {
+    rank_matrix = Matrix(dimension, 1);
 
     //making rank matrix first setting the values to 1
     for (int i = 0; i < dimension; i++) {
@@ -128,12 +128,11 @@ Matrix GoogleRank::get_rank_matrix(const Matrix& m_matrix) {
     }
 
     rank_matrix = matrix_sum * rank_matrix;
-
-    return rank_matrix;
 }
 
 
-void GoogleRank::printResult(Matrix& rank_matrix) {
+void GoogleRank::printResult() {
+    int INT_CONVERTER_VAL = 65;
     // print the percentage of each element in rank matrix
     for (int i = 0; i < dimension; i++) {
         cout << "Page " << (char)(INT_CONVERTER_VAL + i) << ": ";

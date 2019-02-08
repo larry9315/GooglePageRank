@@ -15,12 +15,9 @@
 
 using namespace std;
 
-constexpr double EPSILON = 0.0001;
-constexpr double P_VALUE = 0.85;
-constexpr int INT_CONVERTER_VAL = 65;
-
 class Matrix {
 private:
+
     int row;
     int column;
     double * myArr;
