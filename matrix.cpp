@@ -101,6 +101,7 @@ ostream& operator<<(ostream& os, const Matrix& obj) {
             os << endl;
         }
     }
+    return os;
 }
 
 bool operator==(const Matrix& lhs, const Matrix& rhs) {
@@ -108,7 +109,7 @@ bool operator==(const Matrix& lhs, const Matrix& rhs) {
         return false;
     }
 
-    double EPSILON = 0.0001;
+    constexpr double EPSILON = 0.0001;
 
     // absolute value of the two minus value to handle tolerance calculation
     for (int i = 0; i < lhs.row * lhs.column; i++) {
@@ -149,12 +150,12 @@ Matrix Matrix::operator--(int) {
     return temp;
 }
 
+// copy and swap
 Matrix& Matrix::operator=(Matrix rhs) {
     mySwap(*this, rhs);
     return *this;
 }
 
-// is if condition necessary
 Matrix operator+(Matrix lhs, const Matrix& rhs) {
 
     lhs += rhs;
@@ -215,7 +216,7 @@ Matrix& Matrix::operator*=(const Matrix& rhs) {
         }
     }
 
-    // creating temp array one for matrix multiplication
+    // creating temp array two for matrix multiplication
     k = 0;
     for (int i = 0; i < rhs.row; i++) {
         for (int j = 0; j < rhs.column; j++) {

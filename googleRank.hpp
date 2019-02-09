@@ -18,8 +18,6 @@ class GoogleRank {
 
     vector<double> myVec;
     int dimension;
-public:
-    GoogleRank();
 
     void read(string fileName);
 
@@ -28,6 +26,9 @@ public:
     void build_m_matrix();
 
     void build_rank_matrix();
+
+public:
+    GoogleRank();
 
     void printResult();
 };

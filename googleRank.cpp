@@ -7,7 +7,7 @@
 
 GoogleRank::GoogleRank() {
     read("connectivity.txt");
-    // getting n dimension of square matrix
+
 
     build_s_matrix();
     build_m_matrix();
@@ -75,7 +75,7 @@ void GoogleRank::build_m_matrix() {
     Matrix matrix2(dimension);
     Matrix q_matrix(dimension);
 
-    double P_VALUE = 0.85;
+    constexpr double P_VALUE = 0.85;
 
     // making identity matrix for p_value, 1-p_value and Q matrix
     for (int i = 0; i < dimension; i++) {
@@ -132,7 +132,7 @@ void GoogleRank::build_rank_matrix() {
 
 
 void GoogleRank::printResult() {
-    int INT_CONVERTER_VAL = 65;
+    constexpr int INT_CONVERTER_VAL = 65;
     // print the percentage of each element in rank matrix
     for (int i = 0; i < dimension; i++) {
         cout << "Page " << (char)(INT_CONVERTER_VAL + i) << ": ";
