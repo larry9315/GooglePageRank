@@ -134,7 +134,7 @@ void GoogleRank::build_rank_matrix() {
     rank_matrix = matrix_sum * rank_matrix;
 }
 
-// prints result with asci code converter for the letters
+// prints result with asci code converter for the letters.
 void GoogleRank::printResult() {
     constexpr int INT_CONVERTER_VAL = 65;
     // print the percentage of each element in rank matrix
