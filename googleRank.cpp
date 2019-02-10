@@ -5,6 +5,7 @@
 
 #include "googleRank.hpp"
 
+// constructs all the matrices instance variables
 GoogleRank::GoogleRank() {
     read("connectivity.txt");
 
@@ -16,6 +17,7 @@ GoogleRank::GoogleRank() {
 
 }
 
+// populates the vector with the s matrix values
 void GoogleRank::read(string fileName) {
     // reads from the file
     ifstream file{fileName};
@@ -34,6 +36,7 @@ void GoogleRank::read(string fileName) {
     }
 }
 
+// build s matrix using the input from vector word extraction
 void GoogleRank::build_s_matrix() {
     // create first stage of s matrix
 
@@ -70,6 +73,7 @@ void GoogleRank::build_s_matrix() {
     }
 }
 
+// build m matrix using the formula
 void GoogleRank::build_m_matrix() {
     Matrix matrix1(dimension);
     Matrix matrix2(dimension);
@@ -92,9 +96,11 @@ void GoogleRank::build_m_matrix() {
     m_matrix = (matrix1 * s_matrix) + (matrix2 * q_matrix);
 }
 
+// builds rank matrix with markov process
 void GoogleRank::build_rank_matrix() {
     rank_matrix = Matrix(dimension, 1);
 
+    cout << m_matrix << endl;
     //making rank matrix first setting the values to 1
     rank_matrix++;
 
@@ -128,7 +134,7 @@ void GoogleRank::build_rank_matrix() {
     rank_matrix = matrix_sum * rank_matrix;
 }
 
-
+// prints result with asci code converter for the letters
 void GoogleRank::printResult() {
     constexpr int INT_CONVERTER_VAL = 65;
     // print the percentage of each element in rank matrix

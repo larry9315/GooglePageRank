@@ -4,6 +4,7 @@
 
 #include "matrix.hpp"
 
+// default constructor that constructs 1 by 1 matrix of value 0
 Matrix::Matrix() {
     row = 1;
     column = 1;
@@ -12,6 +13,7 @@ Matrix::Matrix() {
     myArr[0] = 0.0;
 }
 
+// creates an n by n matrix with row and column size match to n
 Matrix::Matrix(int n) {
     if (n <= 0) {
         cout << "exception thrown" << endl;
@@ -27,6 +29,7 @@ Matrix::Matrix(int n) {
     }
 }
 
+// consturcts matrix by r row size and c column size
 Matrix::Matrix(int r, int c) {
     if (r <= 0 || c <= 0) {
         cout << "exception thrown" << endl;
@@ -97,6 +100,7 @@ void Matrix::clear() {
     }
 }
 
+// prints the elements using flags to nicely align the elements
 ostream& operator<<(ostream& os, const Matrix& obj) {
     int j = 0;
     for (int i = 0; i < obj.row * obj.column; i++) {
@@ -109,6 +113,7 @@ ostream& operator<<(ostream& os, const Matrix& obj) {
     return os;
 }
 
+// equals operator that checks every elements and returns false if dimension is incorrect.
 bool operator==(const Matrix& lhs, const Matrix& rhs) {
     if (lhs.row != rhs.row || lhs.column != rhs.column) {
         return false;
@@ -125,6 +130,7 @@ bool operator==(const Matrix& lhs, const Matrix& rhs) {
     return true;
 }
 
+// not equals operator
 bool operator!=(const Matrix& lhs, const Matrix& rhs) {
     return !operator==(lhs, rhs);
 }
@@ -185,6 +191,7 @@ Matrix& Matrix::operator+=(const Matrix& rhs) {
     return *this;
 }
 
+// subtracts matrix
 Matrix operator-(Matrix lhs, const Matrix& rhs) {
     lhs -= rhs;
     return lhs;
@@ -204,6 +211,7 @@ Matrix& Matrix::operator-=(const Matrix& rhs) {
     return *this;
 }
 
+// multiplier matrices
 Matrix operator*(Matrix lhs, const Matrix& rhs) {
     lhs *= rhs;
     return lhs;
@@ -269,6 +277,7 @@ void mySwap(Matrix &first, Matrix &second) {
     swap(first.myArr, second.myArr);
 }
 
+//deallocates the memory for dynamic allocation
 Matrix::~Matrix() {
     delete[] myArr;
 }
