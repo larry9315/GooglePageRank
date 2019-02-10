@@ -96,9 +96,7 @@ void GoogleRank::build_rank_matrix() {
     rank_matrix = Matrix(dimension, 1);
 
     //making rank matrix first setting the values to 1
-    for (int i = 0; i < dimension; i++) {
-        rank_matrix.set_value(i, 0, 1);
-    }
+    rank_matrix++;
 
 
     //store the first new rank matrix value and old rank matrix value

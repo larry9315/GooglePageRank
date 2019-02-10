@@ -15,7 +15,7 @@ Matrix::Matrix() {
 Matrix::Matrix(int n) {
     if (n <= 0) {
         cout << "exception thrown" << endl;
-        throw new exception();
+        throw "invalid n size";
     }
 
     row = n;
@@ -30,7 +30,7 @@ Matrix::Matrix(int n) {
 Matrix::Matrix(int r, int c) {
     if (r <= 0 || c <= 0) {
         cout << "exception thrown" << endl;
-        throw new exception();
+        throw "invalid row or column size";
     }
 
     row = r;
@@ -42,12 +42,13 @@ Matrix::Matrix(int r, int c) {
     }
 }
 
+// consturcts matrix based on array and parameter has to be perfect square
 Matrix::Matrix(double arr[], int size) {
 
     double squaredVal = sqrt(size);
     if ((squaredVal - floor(squaredVal)) != 0) {
         cout << "exception thrown" << endl;
-        throw new exception();
+        throw "not a perfect square value";
     }
 
     row = squaredVal;
@@ -60,6 +61,7 @@ Matrix::Matrix(double arr[], int size) {
 
 }
 
+// copy constructor
 Matrix::Matrix(const Matrix& other) {
     row = other.row;
     column = other.column;
@@ -69,14 +71,16 @@ Matrix::Matrix(const Matrix& other) {
     }
 }
 
+// sets the located indicies to new value
 void Matrix::set_value(int r, int c, double newValue) {
     if (r >= row || r < 0 || c >= column || c < 0) {
         cout << "Exception thrown" << endl;
-        throw new exception();
+        throw "invalid row r";
     }
     myArr[column * r + c] = newValue;
 }
 
+// gets the located indicies value in matrix
 double Matrix::get_value(int r, int c) {
     if (r >= row || r < 0 || c >= column || c < 0) {
         cout << "Exception thrown" << endl;
@@ -86,6 +90,7 @@ double Matrix::get_value(int r, int c) {
     return myArr[column * r + c];
 }
 
+// sets all elements in array to 0
 void Matrix::clear() {
     for (int i = 0; i < row * column; i++) {
         myArr[i] = 0.0;
@@ -124,6 +129,7 @@ bool operator!=(const Matrix& lhs, const Matrix& rhs) {
     return !operator==(lhs, rhs);
 }
 
+// increments all elements by 1
 Matrix& Matrix::operator++() {
     for (int i = 0; i < row * column; i++) {
         myArr[i]++;
@@ -131,12 +137,14 @@ Matrix& Matrix::operator++() {
     return *this;
 }
 
+// increments all elements by 1
 Matrix Matrix::operator++(int) {
     Matrix temp(*this);
     operator++();
     return temp;
 }
 
+// decrements all elements by 1
 Matrix& Matrix::operator--() {
     for (int i = 0; i < row * column; i++) {
         myArr[i]--;
@@ -144,6 +152,7 @@ Matrix& Matrix::operator--() {
     return *this;
 }
 
+// decrements all elements by 1
 Matrix Matrix::operator--(int) {
     Matrix temp(*this);
     operator--();
@@ -162,6 +171,7 @@ Matrix operator+(Matrix lhs, const Matrix& rhs) {
     return lhs;
 }
 
+// adds matrix
 Matrix& Matrix::operator+=(const Matrix& rhs) {
     if (row != rhs.row || column != rhs.column) {
         cout << "exception thrown" << endl;
@@ -180,6 +190,7 @@ Matrix operator-(Matrix lhs, const Matrix& rhs) {
     return lhs;
 }
 
+//subtracts matrix
 Matrix& Matrix::operator-=(const Matrix& rhs) {
     if (row != rhs.row || column != rhs.column) {
         cout << "exception thrown" << endl;
@@ -198,6 +209,7 @@ Matrix operator*(Matrix lhs, const Matrix& rhs) {
     return lhs;
 }
 
+// multiplies matrices, resizes to size first matrix row and second matrix column
 Matrix& Matrix::operator*=(const Matrix& rhs) {
     if (column != rhs.row) {
         cout << "row column doesnt match" << endl;
@@ -235,7 +247,7 @@ Matrix& Matrix::operator*=(const Matrix& rhs) {
         myArr[i] = 0.0;
     }
 
-    //matrix multiplication algorithm
+    //matrix multiplication azlgorithm
     for (int i = 0; i < row; i++) {
         for (t = 0; t < rhs.column; t++) {
             for (j = 0; j < column; j++) {
@@ -250,6 +262,7 @@ Matrix& Matrix::operator*=(const Matrix& rhs) {
 
 }
 
+// my swap method that swaps the object instance variables
 void mySwap(Matrix &first, Matrix &second) {
     swap(first.row, second.row);
     swap(first.column, second.column);
