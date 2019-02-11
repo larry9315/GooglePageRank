@@ -96,7 +96,7 @@ void GoogleRank::build_m_matrix() {
     m_matrix = (matrix1 * s_matrix) + (matrix2 * q_matrix);
 }
 
-// builds rank matrix with markov process
+// builds rank matrix with markov process.
 void GoogleRank::build_rank_matrix() {
     rank_matrix = Matrix(dimension, 1);
 
