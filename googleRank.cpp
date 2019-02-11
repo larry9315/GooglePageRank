@@ -7,7 +7,7 @@
 
 // constructs all the matrices instance variables
 GoogleRank::GoogleRank() {
-    read("connectivity.txt");
+    read("../connectivity.txt");
 
 
     build_s_matrix();
@@ -99,8 +99,7 @@ void GoogleRank::build_m_matrix() {
 // builds rank matrix with markov process.
 void GoogleRank::build_rank_matrix() {
     rank_matrix = Matrix(dimension, 1);
-
-    cout << m_matrix << endl;
+    
     //making rank matrix first setting the values to 1
     rank_matrix++;
 
